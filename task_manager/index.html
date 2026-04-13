@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <body>
+<div class="container">
+    <h1>Task Manager</h1>
+
+    <form id="taskForm">
+        <div>
+            <label>Title</label>
+            <input type="text" id="title" />
+            <span id="titleError" class="error"></span>
+        </div>
+
+        <div>
+            <label>Priority</label>
+            <select id="priority">
+                <option>High</option>
+                <option selected>Medium</option>
+                <option>Low</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Description</label>
+            <textarea id="description"></textarea>
+        </div>
+
+        <button id="submitBtn">Add Task</button>
+    </form>
+
+    <hr />
+
+    <ul id="taskList"></ul>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
