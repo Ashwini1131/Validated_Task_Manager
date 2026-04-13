@@ -48,7 +48,8 @@ export function setupEvents() {
             priority: priority,
             description: descriptionInput.value.trim(),
             createdAt: Date.now(),
-            completed: false
+            completed: false,
+            show: false
         };
 
         tasks.push(task);
@@ -63,16 +64,14 @@ export function setupEvents() {
 
     taskList.addEventListener('click', function (e) {
 
-        if (!e.target.dataset.id) return;
-        const id = Number(e.target.dataset.id);
+        const target = e.target.closest('[data-id]');
+        if (!target) return;
+        const id = Number(target.dataset.id);
         if (!id) return;
  
-        if (e.target.classList.contains('delete')) {
+        if (target.classList.contains('delete')) {
             setTasks(tasks.filter(task => task.id !== id));
-        }
-
-
-        if (e.target.classList.contains('complete')) {
+        } else if (target.classList.contains('complete')) {
             setTasks(tasks.map(task => {
                 if (task.id === id) {
                 
@@ -80,6 +79,11 @@ export function setupEvents() {
                 }
                 return task;
             }));
+        } else if (target.classList.contains('task-header')) {
+            const task = tasks.find(task => task.id === id);
+            if (task) {
+                task.show = !task.show;
+            }
         }
 
         saveToLocalStorage();

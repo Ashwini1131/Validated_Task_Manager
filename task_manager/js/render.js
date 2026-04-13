@@ -13,11 +13,23 @@ export function renderTasks() {
         li.className = `task ${task.priority.toLowerCase()} ${task.completed ? 'completed' : ''}`;
 
         li.innerHTML = `
-            <span>${task.title} (${task.priority})</span>
+            <div class="task-header" data-id="${task.id}">
             <div>
-                <button class="complete" data-id="${task.id}">Complete</button>
-                <button class="delete" data-id="${task.id}">Delete</button>
-            </div>`;
+            ${task.title}
+            <span class="badge"> ${task.priority}</span>
+            </div>
+            <div>
+            <div class="task-desc ${task.show?"show":""}">
+            ${task.description || "No description"}
+            </div>
+            <div class="task-actions">
+            <button class="complete" data-id="${task.id}">
+            ${task.completed ? 'Undo' : 'Complete'}
+            </button>
+            <button class="delete" data-id="${task.id}">Delete</button>
+            </div>
+            </div>
+            `;
 
         taskList.appendChild(li);
     });

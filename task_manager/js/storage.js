@@ -10,6 +10,9 @@ export function loadFromLocalStorage() {
 
     if (data) {
         setTasks(JSON.parse(data));
+        tasks.forEach(task => {
+            if (typeof task.show !== 'boolean') task.show = false;
+        });
     }
 
     renderTasks();
